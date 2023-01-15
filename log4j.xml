@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/"
+                     debug="null"
+                     reset="false" threshold="null">
+
+    <appender name="STDOUT" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout\">
+            <param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} - [%M](%C{1}:%L)"/>
+        </layout>
+    </appender>
+    
+    <appender name="ZOMBIE" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="logs/zombie.log"/>
+        <param name="Append" value="true"/>
+        <param name="DatePattern" value="'.'yyy-MM-dd"/>
+        <param name="maxBackupIndex" value="4"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss}\t%m"/>
+        </layout>
+        <filter class="org.apache.log4j.varia.LevelMatchFilter">
+            <param name="LevelToMatch" value="INFO"/>
+            <param name="AcceptOnMatch" value="true"/>
+        </filter>
+        <filter class="org.apache.log4j.varia.DenyAllFilter"/>
+    </appender>
+    <logger name="ZOMBIE">
+        <appender-ref ref="ZOMBIE"/>
+    </logger>
+
+
+    <appender name="DEBUG" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="logs/info.log"/>
+        <param name="Append" value="true"/>
+        <param name="MaxFileSize" value="10MB"/>
+        <param name="MaxBackupIndex" value="10"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{ISO8601} - [%M](%C{1}:%L) - %m%n"/>
+        </layout>
+        <filter class="org.apache.log4j.varia.LevelMatchFilter">
+            <param name="LevelToMatch" value="DEBUG"/>
+            <param name="AcceptOnMatch" value="true"/>
+        </filter>
+        <filter class="org.apache.log4j.varia.DenyAllFilter"/>
+    </appender>
+    <appender name="INFO" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="logs/info.log"/>
+        <param name="Append" value="true"/>
+        <param name="MaxFileSize" value="10MB"/>
+        <param name="MaxBackupIndex" value="10"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{ISO8601} - [%M](%C{1}:%L) - %m%n"/>
+        </layout>
+        <filter class="org.apache.log4j.varia.LevelMatchFilter">
+            <param name="LevelToMatch" value="INFO"/>
+            <param name="AcceptOnMatch" value="true"/>
+        </filter>
+        <filter class="org.apache.log4j.varia.DenyAllFilter"/>
+    </appender>
+    <logger name="BEM">
+        <appender-ref ref="DEBUG"/>
+        <appender-ref ref="INFO"/>
+    </logger>
+
+
+</log4j:configuration>

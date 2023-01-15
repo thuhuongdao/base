@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+
+    <server>
+        <!-- Server settings -->
+        <id>1</id>
+            <port>8888</port>
+        <wsport>4446</wsport>
+            <wssport>4445</wssport>
+        <welcome>HTTP Socket Proxy version 1.0</welcome>
+            <!-- second -->
+        <idle>60</idle>
+            <!-- milisecond -->
+        <remoteConnectTimeout>60000</remoteConnectTimeout>
+        <remoteTimeout>30000</remoteTimeout>
+        <remoteTimeoutShort>3000</remoteTimeoutShort>
+    </server>
+    <!--
+        Client
+    -->
+    <client>
+        <maxClients>100000</maxClients>
+        <timeout>300</timeout>
+		<!-- delimiter can be: unix, win, mac, nul -->
+		<lineDelimiter>win</lineDelimiter>
+    </client>
+
+    <!--
+    Cache
+    -->
+    <cache>
+    	<!-- num of cache items -->
+    	<maxcache>10000</maxcache>
+    	<!-- second: 1/2 day-->
+    	<time>43200</time>
+    </cache>
+    <monitor>
+        <koin>true</koin>
+        <useronline>false</useronline>
+        <debug>true</debug>
+    </monitor>
+</config>
